@@ -1,0 +1,172 @@
+
+ MySQL  localhost:33060+ ssl  JS > \sql
+Switching to SQL mode... Commands end with ;
+Fetching global names for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  SQL > show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| information_schema      |
+| institution             |
+| mysql                   |
+| performance_schema      |
+| sadabadschoolmanagement |
+| school_management       |
+| siddhudb                |
+| sys                     |
+| transaction             |
++-------------------------+
+9 rows in set (0.0025 sec)
+ MySQL  localhost:33060+ ssl  SQL > use school_management;
+Default schema set to `school_management`.
+Fetching global names, object names from `school_management` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  school_management  SQL > show tables;
++-----------------------------+
+| Tables_in_school_management |
++-----------------------------+
+| employee                    |
+| marks                       |
+| students                    |
++-----------------------------+
+3 rows in set (0.0035 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > desc employee;
++------------+---------------+------+-----+---------+-------+
+| Field      | Type          | Null | Key | Default | Extra |
++------------+---------------+------+-----+---------+-------+
+| emp_id     | int           | NO   | PRI | NULL    |       |
+| emp_name   | varchar(50)   | YES  |     | NULL    |       |
+| department | varchar(50)   | YES  |     | NULL    |       |
+| job_title  | varchar(30)   | YES  |     | NULL    |       |
+| salary     | decimal(10,2) | YES  |     | NULL    |       |
+| age        | int           | YES  |     | NULL    |       |
+| gender     | varchar(10)   | YES  |     | NULL    |       |
+| hire_date  | date          | YES  |     | NULL    |       |
+| email      | varchar(100)  | YES  |     | NULL    |       |
+| city       | varchar(30)   | YES  |     | NULL    |       |
++------------+---------------+------+-----+---------+-------+
+10 rows in set (0.0044 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > select * from employee;
++--------+--------------+------------+-------------------+----------+-----+--------+------------+--------------------+-----------+
+| emp_id | emp_name     | department | job_title         | salary   | age | gender | hire_date  | email              | city      |
++--------+--------------+------------+-------------------+----------+-----+--------+------------+--------------------+-----------+
+|      1 | Amit Sharma  | IT         | Software Engineer | 60000.00 |  25 | Male   | 2021-06-15 | amit@company.com   | Delhi     |
+|      2 | Neha Verma   | HR         | HR Executive      | 45000.00 |  28 | Female | 2020-03-10 | neha@company.com   | Mumbai    |
+|      3 | Rahul Singh  | Finance    | Accountant        | 50000.00 |  30 | Male   | 2019-01-20 | rahul@company.com  | Pune      |
+|      4 | Priya Patel  | IT         | Backend Developer | 70000.00 |  27 | Female | 2022-09-05 | priya@company.com  | Ahmedabad |
+|      5 | Suresh Kumar | Sales      | Manager           | 65000.00 |  35 | Male   | 2018-11-12 | suresh@company.com | Chennai   |
++--------+--------------+------------+-------------------+----------+-----+--------+------------+--------------------+-----------+
+5 rows in set (0.0022 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > insert into employee values(6,'Anjali Mehta','Marketing','Marketing Lead',58000,29,'Female','2021-07-18','anjali@company.com','Banglore'),(7,'Vikas Jain','IT','Frontend Developer',55000,26,'Male','2023-02-01','vikas@company.com','Jaipur'),(8,'Kavita Rao','Finance','Financial Analyst',62000,32,'Female','2019-08-25','kavita@company.com','Hyderabad'),(9,'Rohit Malhotra','Operations','Operations Manager',68000,38,'Male','2017-05-30','rohit@company.com','Gurgaon'),(10,'Sneha Iyer','HR','Recruiter',48000,24,'Female','2023-01-10','sneha@company.com','Kochi');
+Query OK, 5 rows affected (0.0279 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  school_management  SQL > select * from employee;
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+| emp_id | emp_name       | department | job_title          | salary   | age | gender | hire_date  | email              | city      |
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+|      1 | Amit Sharma    | IT         | Software Engineer  | 60000.00 |  25 | Male   | 2021-06-15 | amit@company.com   | Delhi     |
+|      2 | Neha Verma     | HR         | HR Executive       | 45000.00 |  28 | Female | 2020-03-10 | neha@company.com   | Mumbai    |
+|      3 | Rahul Singh    | Finance    | Accountant         | 50000.00 |  30 | Male   | 2019-01-20 | rahul@company.com  | Pune      |
+|      4 | Priya Patel    | IT         | Backend Developer  | 70000.00 |  27 | Female | 2022-09-05 | priya@company.com  | Ahmedabad |
+|      5 | Suresh Kumar   | Sales      | Manager            | 65000.00 |  35 | Male   | 2018-11-12 | suresh@company.com | Chennai   |
+|      6 | Anjali Mehta   | Marketing  | Marketing Lead     | 58000.00 |  29 | Female | 2021-07-18 | anjali@company.com | Banglore  |
+|      7 | Vikas Jain     | IT         | Frontend Developer | 55000.00 |  26 | Male   | 2023-02-01 | vikas@company.com  | Jaipur    |
+|      8 | Kavita Rao     | Finance    | Financial Analyst  | 62000.00 |  32 | Female | 2019-08-25 | kavita@company.com | Hyderabad |
+|      9 | Rohit Malhotra | Operations | Operations Manager | 68000.00 |  38 | Male   | 2017-05-30 | rohit@company.com  | Gurgaon   |
+|     10 | Sneha Iyer     | HR         | Recruiter          | 48000.00 |  24 | Female | 2023-01-10 | sneha@company.com  | Kochi     |
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+10 rows in set (0.0015 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > select sum(salary) from employee;
++-------------+
+| sum(salary) |
++-------------+
+|   581000.00 |
++-------------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > select avg(salary) as average_salary from employee;
++----------------+
+| average_salary |
++----------------+
+|   58100.000000 |
++----------------+
+1 row in set (0.0011 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > select count(emp_name) as number_of_employees from employee;
++---------------------+
+| number_of_employees |
++---------------------+
+|                  10 |
++---------------------+
+1 row in set (0.0013 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > select * from employee where salary=(select max(salary) from employee);
++--------+-------------+------------+-------------------+----------+-----+--------+------------+-------------------+-----------+
+| emp_id | emp_name    | department | job_title         | salary   | age | gender | hire_date  | email             | city      |
++--------+-------------+------------+-------------------+----------+-----+--------+------------+-------------------+-----------+
+|      4 | Priya Patel | IT         | Backend Developer | 70000.00 |  27 | Female | 2022-09-05 | priya@company.com | Ahmedabad |
++--------+-------------+------------+-------------------+----------+-----+--------+------------+-------------------+-----------+
+1 row in set (0.0018 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > select emp_name,department,salary,age from employee;
++----------------+------------+----------+-----+
+| emp_name       | department | salary   | age |
++----------------+------------+----------+-----+
+| Amit Sharma    | IT         | 60000.00 |  25 |
+| Neha Verma     | HR         | 45000.00 |  28 |
+| Rahul Singh    | Finance    | 50000.00 |  30 |
+| Priya Patel    | IT         | 70000.00 |  27 |
+| Suresh Kumar   | Sales      | 65000.00 |  35 |
+| Anjali Mehta   | Marketing  | 58000.00 |  29 |
+| Vikas Jain     | IT         | 55000.00 |  26 |
+| Kavita Rao     | Finance    | 62000.00 |  32 |
+| Rohit Malhotra | Operations | 68000.00 |  38 |
+| Sneha Iyer     | HR         | 48000.00 |  24 |
++----------------+------------+----------+-----+
+10 rows in set (0.0014 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > select * from employee where department='IT';
++--------+-------------+------------+--------------------+----------+-----+--------+------------+-------------------+-----------+
+| emp_id | emp_name    | department | job_title          | salary   | age | gender | hire_date  | email             | city      |
++--------+-------------+------------+--------------------+----------+-----+--------+------------+-------------------+-----------+
+|      1 | Amit Sharma | IT         | Software Engineer  | 60000.00 |  25 | Male   | 2021-06-15 | amit@company.com  | Delhi     |
+|      4 | Priya Patel | IT         | Backend Developer  | 70000.00 |  27 | Female | 2022-09-05 | priya@company.com | Ahmedabad |
+|      7 | Vikas Jain  | IT         | Frontend Developer | 55000.00 |  26 | Male   | 2023-02-01 | vikas@company.com | Jaipur    |
++--------+-------------+------------+--------------------+----------+-----+--------+------------+-------------------+-----------+
+3 rows in set (0.0012 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > select * from employee where salary >55000;
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+| emp_id | emp_name       | department | job_title          | salary   | age | gender | hire_date  | email              | city      |
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+|      1 | Amit Sharma    | IT         | Software Engineer  | 60000.00 |  25 | Male   | 2021-06-15 | amit@company.com   | Delhi     |
+|      4 | Priya Patel    | IT         | Backend Developer  | 70000.00 |  27 | Female | 2022-09-05 | priya@company.com  | Ahmedabad |
+|      5 | Suresh Kumar   | Sales      | Manager            | 65000.00 |  35 | Male   | 2018-11-12 | suresh@company.com | Chennai   |
+|      6 | Anjali Mehta   | Marketing  | Marketing Lead     | 58000.00 |  29 | Female | 2021-07-18 | anjali@company.com | Banglore  |
+|      8 | Kavita Rao     | Finance    | Financial Analyst  | 62000.00 |  32 | Female | 2019-08-25 | kavita@company.com | Hyderabad |
+|      9 | Rohit Malhotra | Operations | Operations Manager | 68000.00 |  38 | Male   | 2017-05-30 | rohit@company.com  | Gurgaon   |
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+6 rows in set (0.0201 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > select * from employee where salary > 55000 and  salary < 90000;
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+| emp_id | emp_name       | department | job_title          | salary   | age | gender | hire_date  | email              | city      |
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+|      1 | Amit Sharma    | IT         | Software Engineer  | 60000.00 |  25 | Male   | 2021-06-15 | amit@company.com   | Delhi     |
+|      4 | Priya Patel    | IT         | Backend Developer  | 70000.00 |  27 | Female | 2022-09-05 | priya@company.com  | Ahmedabad |
+|      5 | Suresh Kumar   | Sales      | Manager            | 65000.00 |  35 | Male   | 2018-11-12 | suresh@company.com | Chennai   |
+|      6 | Anjali Mehta   | Marketing  | Marketing Lead     | 58000.00 |  29 | Female | 2021-07-18 | anjali@company.com | Banglore  |
+|      8 | Kavita Rao     | Finance    | Financial Analyst  | 62000.00 |  32 | Female | 2019-08-25 | kavita@company.com | Hyderabad |
+|      9 | Rohit Malhotra | Operations | Operations Manager | 68000.00 |  38 | Male   | 2017-05-30 | rohit@company.com  | Gurgaon   |
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+6 rows in set (0.0013 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > select * from employee where salary > 55000 or  salary < 90000;
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+| emp_id | emp_name       | department | job_title          | salary   | age | gender | hire_date  | email              | city      |
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+|      1 | Amit Sharma    | IT         | Software Engineer  | 60000.00 |  25 | Male   | 2021-06-15 | amit@company.com   | Delhi     |
+|      2 | Neha Verma     | HR         | HR Executive       | 45000.00 |  28 | Female | 2020-03-10 | neha@company.com   | Mumbai    |
+|      3 | Rahul Singh    | Finance    | Accountant         | 50000.00 |  30 | Male   | 2019-01-20 | rahul@company.com  | Pune      |
+|      4 | Priya Patel    | IT         | Backend Developer  | 70000.00 |  27 | Female | 2022-09-05 | priya@company.com  | Ahmedabad |
+|      5 | Suresh Kumar   | Sales      | Manager            | 65000.00 |  35 | Male   | 2018-11-12 | suresh@company.com | Chennai   |
+|      6 | Anjali Mehta   | Marketing  | Marketing Lead     | 58000.00 |  29 | Female | 2021-07-18 | anjali@company.com | Banglore  |
+|      7 | Vikas Jain     | IT         | Frontend Developer | 55000.00 |  26 | Male   | 2023-02-01 | vikas@company.com  | Jaipur    |
+|      8 | Kavita Rao     | Finance    | Financial Analyst  | 62000.00 |  32 | Female | 2019-08-25 | kavita@company.com | Hyderabad |
+|      9 | Rohit Malhotra | Operations | Operations Manager | 68000.00 |  38 | Male   | 2017-05-30 | rohit@company.com  | Gurgaon   |
+|     10 | Sneha Iyer     | HR         | Recruiter          | 48000.00 |  24 | Female | 2023-01-10 | sneha@company.com  | Kochi     |
++--------+----------------+------------+--------------------+----------+-----+--------+------------+--------------------+-----------+
+10 rows in set (0.0014 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL >
